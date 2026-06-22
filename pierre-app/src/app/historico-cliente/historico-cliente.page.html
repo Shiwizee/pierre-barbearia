@@ -1,0 +1,38 @@
+<ion-content [fullscreen]="true" class="historico-content">
+
+  <!-- Topo -->
+  <div class="header-wrapper">
+    <img src="assets/seta.png" alt="Voltar" class="btn-back" (click)="voltar()" />
+    <h1 class="titulo">Histórico</h1>
+    <div class="espacador"></div>
+  </div>
+
+  <!-- Lista de histórico -->
+  <div class="lista-wrapper" *ngIf="historico.length > 0">
+    <div class="historico-card" (click)="toggleExpandido(item)" *ngFor="let item of historico">
+
+      <div class="card-topo">
+        <div class="item-info">
+          <p class="item-servico">{{ item.servico }}</p>
+          <p class="item-data">{{ formatarData(item.data) }} às {{ formatarHorario(item.horario) }}</p>
+        </div>
+      
+        <span class="status-badge" [ngClass]="classeStatus(item.status)">
+          {{ formatarStatus(item.status) }}
+        </span>
+      </div>
+
+    <div class="motivo-wrapper" *ngIf="expandidoId === item.id && item.motivo_cancelamento">
+      <p class="motivo-label">Motivo do cancelamento:</p>
+      <p class="motivo-texto">{{ item.motivo_cancelamento }}</p>
+    </div>
+
+    </div>
+  </div>
+
+  <!-- Vazio -->
+  <div class="vazio-wrapper" *ngIf="historico.length === 0">
+    <p class="vazio-texto">Você ainda não possui histórico de agendamentos.</p>
+  </div>
+
+</ion-content>

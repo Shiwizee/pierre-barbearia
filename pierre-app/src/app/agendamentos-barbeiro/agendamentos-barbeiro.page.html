@@ -1,0 +1,47 @@
+<ion-content [fullscreen]="true" class="agendamentos-barbeiro-content">
+
+  <!-- Topo -->
+  <div class="header-wrapper">
+    <img src="assets/seta.png" alt="Voltar" class="btn-back" (click)="voltar()" />
+    <h1 class="titulo">Agendamentos</h1>
+    <div class="espacador"></div>
+  </div>
+
+  <!-- Seleção de dia -->
+  <div class="secao">
+    <h2 class="secao-titulo">Selecione o Dia</h2>
+    <div class="dias-lista">
+      <div
+        class="dia-card"
+        *ngFor="let dia of diasDisponiveis"
+        [class.selecionado]="diaSelecionado === dia"
+        (click)="selecionarDia(dia)"
+      >
+        <span class="dia-nome">{{ dia.nomeDia }}</span>
+        <span class="dia-data">{{ dia.dataFormatada }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Lista de agendamentos -->
+  <div class="secao" *ngIf="diaSelecionado">
+    <h2 class="secao-titulo">Agendamentos de {{ diaSelecionado.nomeDia }} {{ diaSelecionado.dataFormatada }}</h2>
+
+    <div class="lista-wrapper" *ngIf="agendamentosFiltrados.length > 0">
+      <div class="agendamento-card" *ngFor="let ag of agendamentosFiltrados" (click)="abrirOpcoes(ag)">
+
+        <div class="ag-info">
+          <p class="ag-horario">{{ ag.horario }}</p>
+          <p class="ag-cliente">{{ ag.cliente }}</p>
+          <p class="ag-servico">{{ ag.servico }}</p>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="vazio-wrapper" *ngIf="agendamentosFiltrados.length === 0">
+        <p class="vazio-texto">Nenhum agendamento para este dia.</p>
+    </div>
+  </div>
+
+</ion-content>

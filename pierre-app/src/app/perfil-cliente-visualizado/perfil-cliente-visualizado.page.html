@@ -1,0 +1,55 @@
+<ion-content [fullscreen]="true" class="perfil-visualizado-content">
+
+  <!-- Topo -->
+  <div class="header-wrapper">
+    <img src="assets/seta.png" alt="Voltar" class="btn-back" (click)="voltar()" />
+    <h1 class="titulo">Perfil do Cliente</h1>
+    <div class="espacador"></div>
+  </div>
+
+  <!-- Identificação -->
+  <div class="identificacao-wrapper">
+    <img [src]="fotoDoCliente()" alt="Foto do cliente" class="perfil-avatar" />
+    <p class="perfil-nome">{{ cliente?.apelido || cliente?.nome }}</p>
+
+    <span class="status-badge" [class.suspenso]="cliente?.suspenso">
+      {{ cliente?.suspenso ? formatarSuspensao() : 'Ativo' }}
+    </span>
+  </div>
+
+  <!-- Dados -->
+  <div class="dados-wrapper" *ngIf="cliente">
+
+    <div class="dado-item">
+      <p class="dado-label">Nome completo</p>
+      <p class="dado-valor">{{ cliente.nome }}</p>
+    </div>
+
+    <div class="dado-item">
+      <p class="dado-label">Apelido</p>
+      <p class="dado-valor">{{ cliente.apelido }}</p>
+    </div>
+
+    <div class="dado-item">
+      <p class="dado-label">Email</p>
+      <p class="dado-valor">{{ cliente.email }}</p>
+    </div>
+
+    <div class="dado-item">
+      <p class="dado-label">Telefone</p>
+      <p class="dado-valor">{{ cliente.telefone || 'Não informado' }}</p>
+    </div>
+
+  </div>
+
+  <!-- Carregando -->
+  <div class="vazio-wrapper" *ngIf="!cliente && !erro">
+    <p class="vazio-texto">Carregando dados do cliente...</p>
+  </div>
+
+  <!-- Erro -->
+  <div class="vazio-wrapper" *ngIf="erro">
+    <p class="vazio-texto">{{ erro }}</p>
+  </div>
+
+</ion-content>

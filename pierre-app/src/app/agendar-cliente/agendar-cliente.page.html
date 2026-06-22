@@ -1,0 +1,99 @@
+<ion-content [fullscreen]="true" class="agendar-cliente-content">
+
+  <!-- Topo -->
+  <div class="header-wrapper">
+    <img src="assets/seta.png" alt="Voltar" class="btn-back" (click)="voltar()" />
+    <h1 class="titulo">Agendar para Cliente</h1>
+    <div class="espacador"></div>
+  </div>
+
+  <!-- Busca de cliente -->
+  <div class="secao">
+    <h2 class="secao-titulo">Buscar Cliente</h2>
+
+    <ion-input
+      class="busca-input"
+      type="text"
+      placeholder="Digite o apelido ou ID do cliente"
+      [(ngModel)]="termoBusca"
+      (ionInput)="buscarClientes()"
+    ></ion-input>
+
+    <!-- Sugestões -->
+    <div class="sugestoes-lista" *ngIf="sugestoes.length > 0 && !clienteSelecionado">
+      <div
+        class="sugestao-item"
+        *ngFor="let cliente of sugestoes"
+        (click)="selecionarCliente(cliente)"
+      >
+        <span class="sugestao-apelido">{{ cliente.apelido }}</span>
+        <span class="sugestao-id">ID: {{ cliente.id }}</span>
+      </div>
+    </div>
+
+    <!-- Cliente selecionado -->
+    <div class="cliente-selecionado" *ngIf="clienteSelecionado">
+      <div class="cliente-info">
+        <p class="cliente-nome">{{ clienteSelecionado.nome }}</p>
+        <p class="cliente-detalhe">{{ clienteSelecionado.apelido }} • ID: {{ clienteSelecionado.id }}</p>
+      </div>
+      <img src="assets/Cancelar.png" alt="Remover" class="cliente-remover" (click)="removerCliente()" />
+    </div>
+  </div>
+
+  <!-- Seção: Serviços -->
+  <div class="secao" *ngIf="clienteSelecionado">
+    <h2 class="secao-titulo">Serviços e Valores</h2>
+    <div class="servicos-lista">
+      <div
+        class="servico-card"
+        *ngFor="let servico of servicos"
+        [class.selecionado]="servicoSelecionado === servico"
+        (click)="selecionarServico(servico)"
+      >
+        {{ servico.nome }} - R${{ servico.preco }}
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção: Data -->
+  <div class="secao" *ngIf="servicoSelecionado">
+    <h2 class="secao-titulo">Selecione o Dia</h2>
+    <div class="dias-lista">
+      <div
+        class="dia-card"
+        *ngFor="let dia of diasDisponiveis"
+        [class.selecionado]="diaSelecionado === dia"
+        (click)="selecionarDia(dia)"
+      >
+        <span class="dia-nome">{{ dia.nomeDia }}</span>
+        <span class="dia-data">{{ dia.dataFormatada }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Seção: Horários -->
+  <div class="secao" *ngIf="diaSelecionado">
+    <h2 class="secao-titulo">Selecione o Horário</h2>
+    <div class="horarios-grade">
+      <div
+        class="horario-card"
+        *ngFor="let hora of horarios"
+        [class.selecionado]="horarioSelecionado === hora"
+        (click)="selecionarHorario(hora)"
+      >
+        {{ hora }}
+      </div>
+    </div>
+  </div>
+
+  <div style="height: 90px;"></div>
+
+</ion-content>
+
+<!-- Botão fixo -->
+<div class="botao-confirmar-wrapper" *ngIf="horarioSelecionado">
+  <ion-button expand="block" class="btn-confirmar" (click)="confirmarAgendamento()">
+    Confirmar Agendamento
+  </ion-button>
+</div>

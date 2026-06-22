@@ -1,0 +1,140 @@
+ion-content.gerenciar-clientes-content {
+  --background: #2b2b2b;
+}
+
+.gerenciar-clientes-content {
+
+  // Topo
+  .header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 48px 24px 8px;
+
+    .btn-back {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      cursor: pointer;
+      opacity: 0.85;
+      transition: opacity 0.2s ease;
+
+      &:hover { opacity: 1; }
+    }
+
+    .titulo {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .espacador {
+      width: 36px;
+    }
+  }
+
+  // Seções
+  .secao {
+    padding: 16px 24px 8px;
+  }
+
+  // Busca
+  .busca-input {
+    --background: #f0f0f0;
+    --color: #333;
+    --placeholder-color: #999;
+    --placeholder-opacity: 1;
+    --border-radius: 30px;
+    --padding-start: 20px;
+    --padding-end: 20px;
+    --padding-top: 14px;
+    --padding-bottom: 14px;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  // Lista de clientes
+  .lista-wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .cliente-card {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background-color: #383838;
+      border-radius: 14px;
+      padding: 16px 20px;
+      gap: 12px;
+
+      .cliente-info {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+        flex: 1;
+        cursor: pointer;
+
+        .cliente-nome {
+          color: #fff;
+          font-size: 16px;
+          font-weight: 700;
+          margin: 0;
+        }
+
+        .cliente-detalhe {
+          color: #aaa;
+          font-size: 12px;
+          margin: 0;
+        }
+
+        .status-badge {
+          align-self: flex-start;
+          margin-top: 4px;
+          font-size: 11px;
+          font-weight: 600;
+          padding: 3px 10px;
+          border-radius: 20px;
+          background-color: rgba(76, 175, 80, 0.2);
+          color: #4caf50;
+
+          &.suspenso {
+            background-color: rgba(192, 57, 43, 0.2);
+            color: #e74c3c;
+          }
+        }
+      }
+
+      .btn-acao {
+        --border-radius: 20px;
+        --background: #c0392b;
+        --background-activated: #a4321f;
+        --box-shadow: none;
+        font-size: 12px;
+        font-weight: 700;
+        height: 36px;
+        margin: 0;
+
+        &.btn-reativar {
+          --background: #3d8fa1;
+          --background-activated: #2f7a8c;
+        }
+      }
+    }
+  }
+
+  // Estado vazio
+  .vazio-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 24px;
+
+    .vazio-texto {
+      color: #aaa;
+      font-size: 15px;
+      text-align: center;
+    }
+  }
+}

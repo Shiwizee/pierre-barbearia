@@ -1,0 +1,182 @@
+ion-content.bloquear-horarios-content {
+  --background: #2b2b2b;
+}
+
+.bloquear-horarios-content {
+
+  // Topo
+  .header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 48px 24px 8px;
+
+    .btn-back {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      cursor: pointer;
+      opacity: 0.85;
+      transition: opacity 0.2s ease;
+
+      &:hover { opacity: 1; }
+    }
+
+    .titulo {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .espacador {
+      width: 36px;
+    }
+  }
+
+  // Seções
+  .secao {
+    padding: 16px 24px 8px;
+
+    .secao-titulo {
+      color: #fff;
+      font-size: 16px;
+      font-weight: 700;
+      background-color: #3d8fa1;
+      border-radius: 10px;
+      padding: 12px 16px;
+      margin: 0 0 14px;
+      text-align: center;
+    }
+  }
+
+  // Dias
+  .dias-lista {
+    display: flex;
+    gap: 10px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+
+    .dia-card {
+      min-width: 72px;
+      background-color: #383838;
+      border-radius: 12px;
+      padding: 12px 8px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+      flex-shrink: 0;
+
+      .dia-nome {
+        color: #aaa;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+      }
+
+      .dia-data {
+        color: #fff;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      &.selecionado {
+        background-color: #3d8fa1;
+
+        .dia-nome { color: #fff; }
+        .dia-data { color: #fff; }
+      }
+    }
+  }
+
+  // Legenda
+  .legenda-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    padding: 12px 24px 0;
+
+    .legenda-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+
+      .legenda-cor {
+        width: 14px;
+        height: 14px;
+        border-radius: 4px;
+
+        &.cor-disponivel { background-color: #555; }
+        &.cor-bloqueado { background-color: #c0392b; }
+        &.cor-agendado { background-color: #4caf50; }
+        &.cor-selecionado { background-color: #3d8fa1; }
+      }
+
+      .legenda-texto {
+        color: #aaa;
+        font-size: 12px;
+      }
+    }
+  }
+
+  // Horários
+  .horarios-grade {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+
+    .horario-card {
+      background-color: #555; // disponível
+      color: #fff;
+      font-size: 14px;
+      font-weight: 600;
+      border-radius: 10px;
+      padding: 12px 4px;
+      text-align: center;
+      cursor: pointer;
+      transition: background-color 0.2s ease, transform 0.1s ease;
+
+      &:active { transform: scale(0.98); }
+
+      // Bloqueado
+      &.bloqueado {
+        background-color: #c0392b;
+      }
+
+      // Já agendado (não pode interagir)
+      &.agendado {
+        background-color: #4caf50;
+        cursor: not-allowed;
+        opacity: 0.8;
+      }
+
+      // Selecionado para ação
+      &.selecionado {
+        background-color: #3d8fa1;
+      }
+    }
+  }
+}
+
+// Botão salvar fixo
+.botao-salvar-wrapper {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px 24px 24px;
+  background: linear-gradient(to top, #2b2b2b 70%, transparent);
+
+  .btn-salvar {
+    --border-radius: 30px;
+    --background: #3d8fa1;
+    --background-activated: #2f7a8c;
+    --box-shadow: none;
+    font-size: 16px;
+    font-weight: 700;
+    height: 52px;
+  }
+}

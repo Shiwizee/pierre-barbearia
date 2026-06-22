@@ -1,0 +1,72 @@
+<ion-content [fullscreen]="true" class="cadastro-content">
+
+  <!-- Botão voltar -->
+  <div class="back-wrapper">
+    <img src="assets/seta.png" alt="Voltar" class="btn-back" (click)="voltar()" />
+  </div>
+
+  <!-- Logo -->
+  <div class="logo-wrapper">
+    <img src="assets/logo_barbearia.png" alt="Logo Pierre Barbeiro" class="logo" />
+  </div>
+
+  <!-- Formulário -->
+  <div class="form-wrapper">
+
+    <div class="inputs-group">
+      <ion-input
+        class="input-field"
+        type="text"
+        placeholder="Digite seu nome completo"
+        [(ngModel)]="nome"
+      ></ion-input>
+
+      <ion-input
+        class="input-field"
+        type="text"
+        placeholder="Digite seu apelido"
+        [(ngModel)]="apelido"
+      ></ion-input>
+      
+      <ion-input
+        class="input-field"
+        type="email"
+        placeholder="Digite seu email"
+        [(ngModel)]="email"
+      ></ion-input>
+
+      <ion-input
+        class="input-field"
+        type="password"
+        placeholder="Digite sua senha"
+        [(ngModel)]="senha"
+      ></ion-input>
+
+        <p class="dica-senha">Mínimo 8 caracteres, com letra maiúscula, minúscula e número.</p>
+      
+      <ion-input
+        class="input-field"
+        type="password"
+        placeholder="Confirme sua senha"
+        [(ngModel)]="confirmarSenha"
+      ></ion-input>
+
+      <ion-input
+        class="input-field"
+        type="tel"
+        placeholder="(11) 99999-9999"
+        [(ngModel)]="telefone"
+        (ionInput)="formatarTelefone($event)"
+        maxlength="15"
+      ></ion-input>
+    </div>
+
+    <div class="buttons-group">
+      <ion-button expand="block" class="btn-primary" (click)="cadastrar()">
+        Cadastre-se
+      </ion-button>
+    </div>
+
+  </div>
+
+</ion-content>

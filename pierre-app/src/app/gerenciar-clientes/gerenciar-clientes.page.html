@@ -1,0 +1,51 @@
+<ion-content [fullscreen]="true" class="gerenciar-clientes-content">
+
+  <!-- Topo -->
+  <div class="header-wrapper">
+    <img src="assets/seta.png" alt="Voltar" class="btn-back" (click)="voltar()" />
+    <h1 class="titulo">Gerenciar Clientes</h1>
+    <div class="espacador"></div>
+  </div>
+
+  <!-- Busca -->
+  <div class="secao">
+    <ion-input
+      class="busca-input"
+      type="text"
+      placeholder="Buscar por apelido ou ID"
+      [(ngModel)]="termoBusca"
+      (ionInput)="filtrarClientes()"
+    ></ion-input>
+  </div>
+
+  <!-- Lista de clientes -->
+  <div class="secao">
+    <div class="lista-wrapper">
+      <div class="cliente-card" *ngFor="let cliente of clientesFiltrados">
+
+        <div class="cliente-info" (click)="verPerfil(cliente)">
+          <p class="cliente-nome">{{ cliente.nome }}</p>
+          <p class="cliente-detalhe">{{ cliente.apelido }} • ID: {{ cliente.id }}</p>
+                
+          <span class="status-badge" [class.suspenso]="cliente.suspenso">
+            {{ formatarSuspensao(cliente) }}
+          </span>
+        </div>
+
+        <ion-button
+          class="btn-acao"
+          [class.btn-reativar]="cliente.suspenso"
+          (click)="abrirOpcoesSuspensao(cliente)"
+        >
+          {{ cliente.suspenso ? 'Reativar' : 'Suspender' }}
+        </ion-button>
+
+      </div>
+    </div>
+
+    <div class="vazio-wrapper" *ngIf="clientesFiltrados.length === 0">
+      <p class="vazio-texto">Nenhum cliente encontrado.</p>
+    </div>
+  </div>
+
+</ion-content>

@@ -1,0 +1,4 @@
+node_modules/
+.env
+uploads/perfis/*
+!uploads/perfis/.gitkeep

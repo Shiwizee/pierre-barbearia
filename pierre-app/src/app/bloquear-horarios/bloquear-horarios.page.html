@@ -1,0 +1,72 @@
+<ion-content [fullscreen]="true" class="bloquear-horarios-content">
+
+  <!-- Topo -->
+  <div class="header-wrapper">
+    <img src="assets/seta.png" alt="Voltar" class="btn-back" (click)="voltar()" />
+    <h1 class="titulo">Bloquear Horários</h1>
+    <div class="espacador"></div>
+  </div>
+
+  <!-- Seleção de dia -->
+  <div class="secao">
+    <h2 class="secao-titulo">Selecione o Dia</h2>
+    <div class="dias-lista">
+      <div
+        class="dia-card"
+        *ngFor="let dia of diasDisponiveis"
+        [class.selecionado]="diaSelecionado === dia"
+        (click)="selecionarDia(dia)"
+      >
+        <span class="dia-nome">{{ dia.nomeDia }}</span>
+        <span class="dia-data">{{ dia.dataFormatada }}</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Legenda -->
+  <div class="legenda-wrapper" *ngIf="diaSelecionado">
+    <div class="legenda-item">
+      <span class="legenda-cor cor-disponivel"></span>
+      <span class="legenda-texto">Disponível</span>
+    </div>
+    <div class="legenda-item">
+      <span class="legenda-cor cor-bloqueado"></span>
+      <span class="legenda-texto">Bloqueado</span>
+    </div>
+    <div class="legenda-item">
+      <span class="legenda-cor cor-agendado"></span>
+      <span class="legenda-texto">Agendado</span>
+    </div>
+    <div class="legenda-item">
+      <span class="legenda-cor cor-selecionado"></span>
+      <span class="legenda-texto">Selecionado</span>
+    </div>
+  </div>
+
+  <!-- Grade de horários -->
+  <div class="secao" *ngIf="diaSelecionado">
+    <h2 class="secao-titulo">Horários de {{ diaSelecionado.nomeDia }} {{ diaSelecionado.dataFormatada }}</h2>
+    <div class="horarios-grade">
+      <div
+        class="horario-card"
+        *ngFor="let hora of horarios"
+        [class.bloqueado]="estaBloqueado(hora)"
+        [class.agendado]="estaAgendado(hora)"
+        [class.selecionado]="estaSelecionado(hora)"
+        (click)="toggleHorario(hora)"
+      >
+        {{ hora }}
+      </div>
+    </div>
+  </div>
+
+  <div style="height: 90px;"></div>
+
+</ion-content>
+
+<!-- Botão fixo -->
+<div class="botao-salvar-wrapper" *ngIf="horariosSelecionados.length > 0">
+  <ion-button expand="block" class="btn-salvar" (click)="salvarBloqueios()">
+    Salvar Alterações
+  </ion-button>
+</div>

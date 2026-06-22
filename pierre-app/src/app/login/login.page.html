@@ -1,0 +1,38 @@
+<ion-content [fullscreen]="true" class="login-content">
+
+  <!-- Logo -->
+  <div class="logo-wrapper">
+    <img src="assets/logo_barbearia.png" alt="Logo Pierre Barbeiro" class="logo" />
+  </div>
+
+  <!-- Formulário -->
+  <div class="form-wrapper">
+
+    <div class="inputs-group">
+      <ion-input
+        class="input-field"
+        type="email"
+        placeholder="Digite seu email"
+        [(ngModel)]="email"
+      ></ion-input>
+
+      <ion-input
+        class="input-field"
+        type="password"
+        placeholder="Digite sua senha"
+        [(ngModel)]="senha"
+      ></ion-input>
+    </div>
+
+    <div class="buttons-group">
+      <ion-button expand="block" class="btn-primary" (click)="entrar()">
+        Entrar
+      </ion-button>
+      <ion-button expand="block" class="btn-secondary" (click)="cadastrar()">
+        Cadastre-se
+      </ion-button>
+    </div>
+
+  </div>
+
+</ion-content>

@@ -1,0 +1,58 @@
+<ion-content [fullscreen]="true" class="meus-agendamentos-content">
+
+  <!-- Topo -->
+  <div class="header-wrapper">
+    <img src="assets/seta.png" alt="Voltar" class="btn-back" (click)="voltar()" />
+    <h1 class="titulo">Meus Agendamentos</h1>
+    <div class="espacador"></div>
+  </div>
+
+  <!-- Limite de agendamentos -->
+  <div class="limite-wrapper">
+    <p class="limite-texto">{{ agendamentos.length }}/2 agendamentos ativos</p>
+    <div class="limite-barra">
+      <div class="limite-preenchimento" [style.width]="(agendamentos.length / 2 * 100) + '%'"></div>
+    </div>
+  </div>
+
+  <!-- Lista de agendamentos -->
+  <div class="lista-wrapper" *ngIf="agendamentos.length > 0">
+  <div class="agendamento-card" *ngFor="let ag of agendamentos">
+
+    <div class="ag-info">
+      <p class="ag-servico">{{ ag.servico }}</p>
+      <p class="ag-data">{{ formatarData(ag.data) }} às {{ formatarHorario(ag.horario) }}</p>
+    </div>
+
+    <div class="ag-acoes">
+      <span class="ag-status confirmado">
+        {{ formatarStatus(ag.status) }}
+      </span>
+      <img src="assets/Cancelar.png" alt="Cancelar" class="ag-cancelar" (click)="cancelarAgendamento(ag)" />
+    </div>
+
+  </div>
+</div>
+
+  <!-- Nenhum agendamento -->
+  <div class="vazio-wrapper" *ngIf="agendamentos.length === 0">
+    <p class="vazio-texto">Você não possui agendamentos ativos.</p>
+  </div>
+
+  <!-- Botão novo agendamento -->
+  <div class="botao-wrapper">
+    <ion-button
+      expand="block"
+      class="btn-agendar"
+      (click)="novoAgendamento()"
+      [disabled]="agendamentos.length >= 2"
+    >
+      {{ agendamentos.length >= 2 ? 'Limite atingido' : 'Novo Agendamento' }}
+    </ion-button>
+
+    <p class="limite-aviso" *ngIf="agendamentos.length >= 2">
+      Você atingiu o limite de 2 agendamentos simultâneos. Cancele um para agendar novamente.
+    </p>
+  </div>
+
+</ion-content>

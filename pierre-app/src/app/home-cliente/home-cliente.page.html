@@ -1,0 +1,34 @@
+<ion-content [fullscreen]="true" class="home-content">
+
+  <!-- Topo -->
+  <div class="header-wrapper">
+    <div class="saudacao">
+      <p class="saudacao-texto">Olá,</p>
+      <p class="saudacao-nome">{{ apelidoCliente || nomeCliente }}!</p>
+    </div>
+    <img [src]="fotoExibida" alt="Perfil" class="perfil-icon" (click)="verPerfil()" />
+  </div>
+
+  <!-- Card próximo agendamento -->
+  <div class="card-agendamento">
+    <p class="card-titulo">Próximo agendamento</p>
+    <p class="card-info" *ngIf="proximoAgendamento">{{ proximoAgendamento }}</p>
+    <p class="card-vazio" *ngIf="!proximoAgendamento">Nenhum agendamento próximo</p>
+  </div>
+
+  <!-- Botões principais -->
+  <div class="acoes-wrapper">
+
+    <div class="card-acao" (click)="irAgendar()">
+      <img src="assets/agendar.png" alt="Agendar" class="acao-icon" />
+      <p class="acao-texto">Agendar</p>
+    </div>
+
+    <div class="card-acao" (click)="irMeusAgendamentos()">
+      <img src="assets/perfil.png" alt="Meus Agendamentos" class="acao-icon" />
+      <p class="acao-texto">Meus Agendamentos</p>
+    </div>
+
+  </div>
+
+</ion-content>

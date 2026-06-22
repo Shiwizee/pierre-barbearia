@@ -1,0 +1,71 @@
+<ion-content [fullscreen]="true" class="home-barbeiro-content">
+
+  <!-- Topo -->
+  <div class="header-wrapper">
+    <div class="saudacao">
+      <p class="saudacao-texto">Olá,</p>
+      <p class="saudacao-nome">{{ nomeBarbeiro }}!</p>
+    </div>
+  </div>
+
+  <!-- Card próximos agendamentos -->
+  <div class="card-resumo">
+    <p class="card-titulo">Próximos Agendamentos</p>
+  </div>
+
+  <!-- Lista dos próximos agendamentos -->
+  <div class="lista-wrapper" *ngIf="proximosAgendamentos.length > 0">
+    <div class="agendamento-card" *ngFor="let ag of proximosAgendamentos" (click)="abrirOpcoes(ag)">
+        <div class="ag-horario">{{ ag.horario }}</div>
+        <div class="ag-info">
+          <p class="ag-cliente">{{ ag.cliente }}</p>
+          <p class="ag-servico">{{ ag.servico }} • {{ ag.data }}</p>
+        </div>
+      </div>
+    </div>
+
+  <!-- Nenhum agendamento -->
+  <div class="vazio-wrapper" *ngIf="proximosAgendamentos.length === 0">
+    <p class="vazio-texto">Nenhum agendamento próximo.</p>
+  </div>
+
+  <!-- Ações principais -->
+  <div class="acoes-wrapper">
+
+    <div class="card-acao" (click)="irAgendamentos()">
+      <img src="assets/agendar.png" alt="Agendamentos" class="acao-icon" />
+      <p class="acao-texto">Ver Todos os Agendamentos</p>
+    </div>
+
+    <div class="card-acao" (click)="irAgendarCliente()">
+      <img src="assets/agendar.png" alt="Agendar para Cliente" class="acao-icon" />
+      <p class="acao-texto">Agendar para Cliente</p>
+    </div>
+
+    <div class="card-acao" (click)="irBloquearHorarios()">
+      <img src="assets/Cancelar.png" alt="Bloquear Horários" class="acao-icon" />
+      <p class="acao-texto">Bloquear Horários</p>
+    </div>
+
+    <div class="card-acao" (click)="irGerenciarClientes()">
+      <img src="assets/perfil.png" alt="Gerenciar Clientes" class="acao-icon" />
+      <p class="acao-texto">Gerenciar Clientes</p>
+    </div>
+
+    <div class="card-acao" (click)="irHistorico()">
+      <img src="assets/perfil.png" alt="Histórico" class="acao-icon" />
+      <p class="acao-texto">Histórico</p>
+    </div>
+
+  </div>
+
+  <!-- Botão sair -->
+  <div class="botao-sair-wrapper">
+    <ion-button expand="block" class="btn-sair" (click)="sair()">
+      Sair da Conta
+    </ion-button>
+  </div>
+
+</ion-content>
+
+

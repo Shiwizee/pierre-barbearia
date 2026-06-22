@@ -1,0 +1,183 @@
+ion-content.perfil-content {
+  --background: #2b2b2b;
+}
+
+.perfil-content {
+
+  // Topo
+  .header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 48px 24px 16px;
+
+    .btn-back {
+      width: 36px;
+      height: 36px;
+      object-fit: contain;
+      cursor: pointer;
+      opacity: 0.85;
+      transition: opacity 0.2s ease;
+
+      &:hover { opacity: 1; }
+    }
+
+    .titulo {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      margin: 0;
+    }
+
+    .espacador {
+      width: 36px;
+    }
+  }
+
+  // Identificação
+  .identificacao-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 0 32px;
+    gap: 12px;
+
+    .avatar-clicavel {
+      position: relative;
+      width: 90px;
+      height: 90px;
+      cursor: pointer;
+
+      .perfil-avatar {
+        width: 90px;
+        height: 90px;
+        object-fit: cover;
+        border-radius: 50%;
+        border: 3px solid #000000;
+      }
+
+      .avatar-overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-color: rgba(0, 0, 0, 0.7);
+        border-radius: 0 0 45px 45px;
+        padding: 4px 0 6px;
+        display: flex;
+        justify-content: center;
+        opacity: 0;
+        transition: opacity 0.2s ease;
+
+        .avatar-overlay-texto {
+          color: #fff;
+          font-size: 10px;
+          font-weight: 600;
+        }
+      }
+
+      &:hover .avatar-overlay,
+      &:active .avatar-overlay {
+        opacity: 1;
+      }
+    }
+
+    .perfil-nome {
+      color: #fff;
+      font-size: 22px;
+      font-weight: 700;
+      margin: 0;
+    }
+  }
+
+  // Dados
+  .dados-wrapper {
+    padding: 0 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+
+    .dado-item {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+
+      .dado-label {
+        color: #aaa;
+        font-size: 12px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin: 0;
+      }
+
+      .dado-input {
+        --background: #383838;
+        --color: #fff;
+        --border-radius: 12px;
+        --padding-start: 16px;
+        --padding-end: 16px;
+        --padding-top: 12px;
+        --padding-bottom: 12px;
+        font-size: 15px;
+
+        &.editavel {
+          --background: #f0f0f0;
+          --color: #333;
+        }
+      }
+    }
+  }
+
+  // Botões
+  .botoes-wrapper {
+    padding: 32px 24px 48px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+
+    .btn-editar {
+      --border-radius: 30px;
+      --background: #3d8fa1;
+      --background-activated: #2f7a8c;
+      --box-shadow: none;
+      font-size: 16px;
+      font-weight: 700;
+      height: 52px;
+    }
+
+    .btn-sair {
+      --border-radius: 30px;
+      --background: transparent;
+      --background-activated: rgba(220, 53, 53, 0.15);
+      --border-color: #dc3535;
+      --border-width: 1.5px;
+      --border-style: solid;
+      --color: #dc3535;
+      --box-shadow: none;
+      font-size: 16px;
+      font-weight: 700;
+      height: 52px;
+    }
+    .btn-historico {
+      --border-radius: 30px;
+      --background: transparent;
+      --background-activated: rgba(61, 143, 161, 0.15);
+      --border-color: #3d8fa1;
+      --border-width: 1.5px;
+      --border-style: solid;
+      --color: #3d8fa1;
+      --box-shadow: none;
+      font-size: 16px;
+      font-weight: 700;
+      height: 52px;
+    }
+  }
+
+  .dica-senha {
+        color: #aaa;
+        font-size: 12px;
+        margin: 4px 8px 0;
+        line-height: 1.4;
+      }
+}
