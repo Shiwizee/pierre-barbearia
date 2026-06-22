@@ -225,9 +225,6 @@ export class PerfilPage implements OnInit {
     await alert.present();
   }
 
-  irHistorico() {
-    this.router.navigate(['/historico-cliente']);
-  }
   voltar() {
     this.router.navigate(['/home-cliente']);
   }

@@ -124,6 +124,10 @@ fotoExibida: string = 'assets/perfil-padrao.png';
     this.router.navigate(['/meus-agendamentos']);
   }
 
+  irHistorico() {
+    this.router.navigate(['/historico-cliente']);
+  }
+  
   irCancelar() {
     this.router.navigate(['/cancelar-agendamento']);
   }

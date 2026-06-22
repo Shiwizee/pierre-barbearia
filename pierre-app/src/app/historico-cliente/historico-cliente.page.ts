@@ -82,6 +82,6 @@ export class HistoricoClientePage implements OnInit {
   }
 
   voltar() {
-    this.router.navigate(['/perfil']);
+    this.router.navigate(['/home-cliente']);
   }
 }
