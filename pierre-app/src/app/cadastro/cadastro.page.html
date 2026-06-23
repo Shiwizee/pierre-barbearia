@@ -58,6 +58,7 @@
         placeholder="(11) 99999-9999"
         [(ngModel)]="telefone"
         (ionInput)="formatarTelefone($event)"
+        (ionBlur)="formatarTelefoneBlur()"
         maxlength="15"
       ></ion-input>
     </div>

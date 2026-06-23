@@ -73,6 +73,8 @@
         [readonly]="!editando"
         [class.editavel]="editando"
         (ionInput)="formatarTelefone($event)"
+        (ionBlur)="formatarTelefoneBlur()"
+        maxlength="15"
       ></ion-input>
     </div>
 
