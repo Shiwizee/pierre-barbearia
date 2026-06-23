@@ -127,7 +127,8 @@ export class HomeBarbeiroPage implements OnInit {
   marcarConcluido(ag: AgendamentoDia) {
     this.api.marcarConcluido(ag.id).subscribe({
       next: () => {
-        this.proximosAgendamentos = this.proximosAgendamentos.filter(a => a.id !== ag.id);      },
+        this.carregarDados();
+      },
       error: (err) => {
         console.error('Erro ao marcar como concluído:', err);
       }
@@ -137,14 +138,14 @@ export class HomeBarbeiroPage implements OnInit {
   marcarNaoCompareceu(ag: AgendamentoDia) {
     this.api.marcarNaoCompareceu(ag.id).subscribe({
       next: () => {
-        this.proximosAgendamentos = this.proximosAgendamentos.filter(a => a.id !== ag.id);
+        this.carregarDados();
       },
       error: (err) => {
         console.error('Erro ao marcar não compareceu:', err);
       }
     });
   }
-
+  
   async cancelarAgendamento(ag: AgendamentoDia) {
     const alert = await this.alertController.create({
       header: 'Cancelar Agendamento',
@@ -164,14 +165,17 @@ export class HomeBarbeiroPage implements OnInit {
           handler: (data) => {
             this.api.cancelarAgendamentoBarbeiro(ag.id, { motivo: data.motivo }).subscribe({
               next: () => {
-                this.proximosAgendamentos = this.proximosAgendamentos.filter(a => a.id !== ag.id);
+                this.carregarDados();
+              },
+              error: (err) => {
+                console.error('Erro ao cancelar agendamento:', err);
               }
             });
           },
         },
       ],
     });
-
+  
     await alert.present();
   }
 

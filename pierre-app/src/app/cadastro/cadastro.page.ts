@@ -29,7 +29,7 @@ export class CadastroPage {
 
   async cadastrar() {
     // Validações
-    if (!this.nome || !this.apelido || !this.email || !this.senha || !this.confirmarSenha) {
+    if (!this.nome || !this.email || !this.senha || !this.confirmarSenha) {
       await this.mostrarErro('Preencha todos os campos obrigatórios.');
       return;
     }

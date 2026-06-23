@@ -23,7 +23,6 @@ export class PerfilPage implements OnInit {
   foto: string | null = null;
   fotoExibida: string = 'assets/perfil-padrao.png';
   editando: boolean = false;
-  novaSenha: string = '';
 
   nomeOriginal: string = '';
   apelidoOriginal: string = '';
@@ -130,23 +129,11 @@ export class PerfilPage implements OnInit {
           return;
         }
 
-        if (this.novaSenha) {
-          const senhaForte = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).{8,}$/.test(this.novaSenha);
-          if (!senhaForte) {
-            await this.mostrarErro('A nova senha deve ter no mínimo 8 caracteres, incluindo letra maiúscula, minúscula e número.');
-            return;
-          }
-        }
-
         const dados: any = {
           nome: this.nome,
           apelido: this.apelido,
           telefone: this.telefone,
         };
-
-        if (this.novaSenha) {
-          dados.senha = this.novaSenha;
-        }
 
       this.api.editarPerfil(dados).subscribe({
         next: async () => {
@@ -161,7 +148,6 @@ export class PerfilPage implements OnInit {
           }
 
           this.editando = false;
-          this.novaSenha = '';
 
           const alert = await this.alertController.create({
             header: 'Sucesso!',

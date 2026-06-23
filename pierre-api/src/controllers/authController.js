@@ -18,23 +18,50 @@ const cadastrar = async (req, res) => {
       return res.status(400).json({ erro: 'Email já cadastrado.' });
     }
 
-    // Verifica se o apelido já existe
-    const [apelidoExiste] = await db.query(
-      'SELECT id FROM usuarios WHERE apelido = ?',
-      [apelido]
-    );
-
-    if (apelidoExiste.length > 0) {
-      return res.status(400).json({ erro: 'Apelido já em uso.' });
+    // Se não informou apelido, gera um único automaticamente
+    let apelidoFinal;
+      
+    if (apelido && apelido.trim() !== '') {
+      apelidoFinal = apelido.trim();
+    } else {
+      const primeiroNome = nome.trim().split(' ')[0].toLowerCase();
+      let gerado = false;
+    
+      while (!gerado) {
+        const numero = Math.floor(Math.random() * 9000) + 1000; // número de 4 dígitos
+        const candidato = `${primeiroNome}_${numero}`;
+      
+        const [existe] = await db.query(
+          'SELECT id FROM usuarios WHERE apelido = ?',
+          [candidato]
+        );
+      
+        if (existe.length === 0) {
+          apelidoFinal = candidato;
+          gerado = true;
+        }
+      }
     }
-
+    
+    // Verifica se o apelido escolhido pelo usuário já existe
+    if (apelido && apelido.trim() !== '') {
+      const [apelidoExiste] = await db.query(
+        'SELECT id FROM usuarios WHERE apelido = ?',
+        [apelidoFinal]
+      );
+    
+      if (apelidoExiste.length > 0) {
+        return res.status(400).json({ erro: 'Apelido já em uso. Escolha outro ou deixe em branco.' });
+      }
+    }
+    
     // Criptografa a senha
     const senhaCriptografada = await bcrypt.hash(senha, 10);
 
     // Insere o usuário no banco
     await db.query(
       'INSERT INTO usuarios (nome, apelido, email, senha, telefone, tipo) VALUES (?, ?, ?, ?, ?, ?)',
-      [nome, apelido, email, senhaCriptografada, telefone, 'cliente']
+      [nome, apelidoFinal, email, senhaCriptografada, telefone, 'cliente']
     );
 
     return res.status(201).json({ mensagem: 'Cadastro realizado com sucesso!' });

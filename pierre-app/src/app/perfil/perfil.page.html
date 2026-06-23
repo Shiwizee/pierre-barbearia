@@ -36,8 +36,7 @@
         class="dado-input"
         type="text"
         [(ngModel)]="nome"
-        [readonly]="!editando"
-        [class.editavel]="editando"
+        [readonly]="true"
       ></ion-input>
     </div>
 
@@ -67,6 +66,7 @@
     <div class="dado-item">
       <p class="dado-label">Telefone</p>
       <ion-input
+        id="telefone-perfil"
         class="dado-input"
         type="tel"
         [(ngModel)]="telefone"
@@ -75,17 +75,6 @@
         (ionInput)="formatarTelefone($event)"
       ></ion-input>
     </div>
-
-    <!--<div class="dado-item" *ngIf="editando">
-      <p class="dado-label">Nova Senha (opcional)</p>
-      <ion-input
-        class="dado-input editavel"
-        type="password"
-        placeholder="Deixe em branco para não alterar"
-        [(ngModel)]="novaSenha"
-      ></ion-input>
-      <p class="dica-senha">Mínimo 8 caracteres, com letra maiúscula, minúscula e número.</p>
-    </div>-->
 
   </div>
 

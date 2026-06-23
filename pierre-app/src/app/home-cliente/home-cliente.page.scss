@@ -116,6 +116,24 @@ ion-content.home-content {
       }
     }
   }
+
+  .contato-wrapper {
+    padding: 24px 32px 40px;
+    text-align: center;
+    
+    .contato-texto {
+      color: #aaa;
+      font-size: 12px;
+      margin: 0;
+    }
+  
+    .contato-numero {
+      color: #3d8fa1;
+      font-size: 14px;
+      font-weight: 600;
+      margin: 4px 0 0;
+    }
+  }
 }
 
 // Barra inferior

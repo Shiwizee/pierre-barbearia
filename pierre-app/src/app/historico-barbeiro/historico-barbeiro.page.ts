@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
@@ -32,7 +32,8 @@ export class HistoricoBarbeiroPage implements OnInit {
 
   constructor(
     private router: Router,
-    private api: ApiService
+    private api: ApiService,
+    private cd: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -43,6 +44,7 @@ export class HistoricoBarbeiroPage implements OnInit {
     this.api.historicoBarbeiro(this.filtroAtivo).subscribe({
       next: (historico) => {
         this.historico = historico;
+        this.cd.detectChanges();
       },
       error: (err) => {
         console.error('Erro ao carregar histórico:', err);
